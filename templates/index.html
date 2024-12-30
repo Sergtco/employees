@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Attrition service</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+    </head>
+    <body>
+        <div class="flex flex-col px-2" name="form" hx-include="this">
+            <label for="last_evaluation">Уровень произваодительности (0.0 - 1.0)</label>
+            <input class="rounded-lg border-black border-2" type="text" name="last_evaluation">
+            <label for="number_project">Количество текущих проектов</label>
+            <input class="rounded-lg border-black border-2" type="number" name="number_project">
+            <label for="average_montly_hours">Среднее количество часов работы в месяц.</label>
+            <input class="rounded-lg border-black border-2" type="number" name="average_montly_hours">
+            <label for="time_spend_company">Количество лет в компании</label>
+            <input class="rounded-lg border-black border-2" type="number" name="time_spend_company">
+            <label for="work_accident">Были ли инциденты на работе?</label>
+            <input class="rounded-lg border-black border-2" type="checkbox" name="work_accident">
+            <label for="promotion_last_5years">Было ли повышение за последние пять лет?</label>
+            <input class="rounded-lg border-black border-2" type="checkbox" name="promotion_last_5years">
+            <label for="dept">Департамент</label>
+            <input class="rounded-lg border-black border-2" type="text" name="dept">
+            <label for="salary">Уровень зарплаты в компании.</label>
+            <input class="rounded-lg border-black border-2" type="range" name="salary">
+            <button 
+                class="bg-red-500 rounded-full" 
+                hx-get="/api/check_employee"
+                hx-trigger="click"
+                hx-target="#result"
+                hx-swap="innerHTML"
+                type="button">Проверить работника</button>
+        </div>
+        <div id="result">
+        </div>
+    </body>
+</html>
